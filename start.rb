@@ -17,7 +17,7 @@ class Start
 	end
 
 	def draw_matzu 
-		image = Image.load('Matzu.png')
+		image = Image.load('images/Matzu.png')
 		Window.draw(100,100,image)
 
 		return false

@@ -15,11 +15,4 @@ class Start
 
 		return false
 	end
-
-	def draw_matzu 
-		image = Image.load('images/Matzu.png')
-		Window.draw(100,100,image)
-
-		return false
-	end
 end

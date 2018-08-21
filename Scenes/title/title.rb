@@ -1,12 +1,16 @@
 module Title
   class Director
     BACKGROUND = Image.load('images/matzu.png')
-    BGM = Sound.new('sound/bgm.wav')
 
     def play
-      Window.draw(0, 0, BACKGROUND)
+    	Window.draw(0, 0, BACKGROUND)
 
-      Scene.current = :game if Input.key_push?(K_ENTER)
+      	matzu_push = Input.key_push?(K_A)
+
+		if matzu_push
+	  		Scene.current = :game
+	  		Scene.play
+		end
     end
   end
 end

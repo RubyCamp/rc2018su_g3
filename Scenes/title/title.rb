@@ -2,11 +2,15 @@ module Title
   class Director
     BACKGROUND = Image.load('images/mog_title.png')
     START = Image.load('images/start.png')
+    def initialize
+      $p1points = 0
+      $p2points = 0
+    end
     def play
     	Window.draw(0, 0, BACKGROUND)
-      Window.draw(400,550,START)
+      Window.draw(250,480,START)
 
-      if Input.mouse_x >= 400 && Input.mouse_x <= 758 && Input.mouse_y >= 550 && Input.mouse_y <= 654
+      if Input.mouse_x >= 250 && Input.mouse_x <= 473 && Input.mouse_y >= 480 && Input.mouse_y <= 566
         if Input.mouse_down?(M_LBUTTON)
           Scene.current = :ready
         end

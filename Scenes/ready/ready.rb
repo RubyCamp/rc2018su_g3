@@ -1,35 +1,35 @@
 module Ready
   class Director
-    BACKGROUND = Image.load('images/ruby.png')
-
+    BACKGROUND = Image.load('images/matzu.png')
     MOUSE = Image.load('images/mouse.png')
+    MOUSE.set_color_key([255,255,255])
     KEYBOARD = Image.load('images/keyboard.png')
+    KEYBOARD.set_color_key([255,255,255])
     RMOUSE = Image.load('images/mouseready.png')
     RMOUSE.set_color_key([255,255,255])
     RKEYBOARD = Image.load('images/keyboardready.png')
     RKEYBOARD.set_color_key([255,255,255])
-
-    def initialize
-      @mouse_player = 0
-      @key_player = 0
-    end
-
-    def play
+    FONT = Font.new(30,"MS 明朝")
+def initialize
+  @mouse_player=0
+  @key_player=0
+end
+def play
       Window.draw(0, 0, BACKGROUND)
-
-      if @key_player == 0
-        Window.draw(100, 200, KEYBOARD)
-      elsif @key_player == 1
-        Window.draw(100, 200, RKEYBOARD)
+      Window.draw_font(20,100,"エンターキーを押してね　　　      マウスをクリックしてね",FONT)
+      if @key_player==0
+      Window.draw(50, 200, KEYBOARD)
+    elsif @key_player==1
+      Window.draw(50, 200, RKEYBOARD)
       end
 
       if @mouse_player == 0
-        Window.draw(700, 200, MOUSE)
+        Window.draw(450, 200, MOUSE)
       elsif @mouse_player == 1
-        Window.draw(700, 200, RMOUSE)
+        Window.draw(450, 200, RMOUSE)
       end
 
-      if Input.key_push?(K_RETURN) 
+      if Input.key_push?(K_RETURN)
         @key_player = 1
       end
 

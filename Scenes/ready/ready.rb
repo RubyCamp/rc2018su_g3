@@ -1,26 +1,37 @@
 module Ready
   class Director
     BACKGROUND = Image.load('images/ruby.png')
-    FONT = Font.new(60,"MS 明朝")
 
-    def initialize
-      @key_player = 0
-      @mouse_player = 0
-    end
-
-    def play
+    MOUSE = Image.load('images/mouse.png')
+    KEYBOARD = Image.load('images/keyboard.png')
+    RMOUSE = Image.load('images/mouseready.png')
+    RMOUSE.set_color_key([255,255,255])
+    RKEYBOARD = Image.load('images/keyboardready.png')
+    RKEYBOARD.set_color_key([255,255,255])
+def initialize
+  @mouse_player=0
+  @key_player=0
+end
+def play
       Window.draw(0, 0, BACKGROUND)
-      Window.draw_font(400,400,"Ready Screen",FONT)
-
-      if Input.key_push?(K_RETURN)
-        @key_player = 1 
+      if @key_player==0
+      Window.draw(100, 200, KEYBOARD)
+    elsif @key_player==1
+      Window.draw(100, 200, RKEYBOARD)
+      end
+      if @mouse_player==0
+      Window.draw(700, 200, MOUSE)
+    elsif @mouse_player==1
+        Window.draw(700, 200, RMOUSE)
+      end
+      if Input.key_push?(K_RETURN) then
+        @key_player=1
+      end
+      if Input.mouse_down?(M_LBUTTON)
+        @mouse_player = 1
       end
 
-      if Input.mouse_down?(M_LBUTTON) 
-        @mouse_player = 1 
-      end
-
-      if @key_player == 1 && @mouse_player == 1 
+      if @key_player == 1 && @mouse_player == 1
         @key_player = 0
         @mouse_player = 0
 

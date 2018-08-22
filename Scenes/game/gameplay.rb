@@ -1,9 +1,9 @@
 module Game
 	class Director
-		BACKGROUND = Image.load('images/ruby.png')
+		BACKGROUND = Image.load('images/matzu.png')
 
 		def play
-    		Window.draw(100,100,BACKGROUND)
+    		Window.draw(0,0,BACKGROUND)
     	end
 	end
 end

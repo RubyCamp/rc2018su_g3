@@ -1,61 +1,40 @@
 class Mouse
-  def initialize
-    #どのボタンをクリックするか
-    @button=M_LBUTTON
+  attr_reader :x, :y, :radius, :sonzai
+  attr_writer :radius
 
-    #う
-    @sonzai=false
-    @sonzai_count=0
-    @size=0
+  def initialize
+    @button = M_LBUTTON #左クリックする
+
+    @sonzai = false 
+    @sonzai_count = 0
+    
+    @mouse_x = 0 # MouseのX座標
+    @mouse_y = 0 # MouseのY座標
+    @radius = 20 # Mouseの範囲円の半径
+
     @image = Image.new(100,100,C_BLUE)
-    @x=0
-    @y=0
-    @r=20
-    @image.circle_fill(@image.width/2,@image.height/2,@r,C_GREEN)
+    @image.circle_fill(@image.width/2,@image.height/2,@radius,C_GREEN)
     @image.set_color_key(C_BLUE)
   end
 
-  def getX
-    return @x
-  end
-
-  def getY
-    return @y
-  end
-
-  def setR
-    if @size==0
-      @r=20
-    end
-  end
-
-  def getR
-    return @r
-  end
-
-  def getSonzai
-    return @sonzai
-  end
-
   def clickMouse
-    if Input.mouseDown?(M_LBUTTON)
-      if @sonzai==false
-        @sonzai=true
-        @x=Input.mousePosX
-        @y=Input.mousePosY
-      else
-        @sonzai_count+=1
+    if @sonzai == false
+      if Input.mouseDown?(@button)
+        @sonzai = true
+        @mouse_x = Input.mousePosX #マウスがクリックされたX座標
+        @mouse_y = Input.mousePosY #マウスがクリックされたY座標
       end
     else
-      @sonzai_count+=1
+      @sonzai_count += 1
+    end 
+
+    if @sonzai_count >= 10 #再度クリックされずに６分の１秒経過した場合、範囲円を消去する
+      @sonzai = false
+      @sonzai_count = 0
     end
-    if @sonzai_count>=10
-      @sonzai=false
-      @sonzai_count=0
-    end
-    if @sonzai==true
-      Window.draw(@x-@image.width/2,@y-@image.height/2,@image)
+
+    if @sonzai == true
+      Window.draw(@mouse_x - @image.width/2,@mouse_y - @image.height/2, @image) #マウスの範囲円を描画する
     end
   end
-
 end

@@ -1,16 +1,12 @@
 module Title
   class Director
-    BACKGROUND = Image.load('images/matzu.png')
+    BACKGROUND = Image.load('images/mog05_1.png')
 
     def play
     	Window.draw(0, 0, BACKGROUND)
 
-      	matzu_push = Input.key_push?(K_A)
+      Scene.current = :ready if Input.key_push?(K_RETURN)
 
-		if matzu_push
-	  		Scene.current = :game
-	  		Scene.play
-		end
     end
   end
 end

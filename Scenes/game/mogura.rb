@@ -21,10 +21,15 @@ class Mogura
     @point=false
   end
 
-  def pushKey
-    if Input.key_push?(@key_code)
+  def pushKey(key_code,bool)
+
+    if key_code==@key_code && bool
       @sonzai=true
     end
+
+    #if Input.key_push?(@key_code)
+      #@sonzai=true
+    #end
   end
 
   def upMogura

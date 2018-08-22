@@ -2,6 +2,10 @@ module Title
   class Director
     BACKGROUND = Image.load('images/mog_title.png')
     START = Image.load('images/start.png')
+    def initialize
+      $p1points = 0
+      $p2points = 0
+    end
     def play
     	Window.draw(0, 0, BACKGROUND)
       Window.draw(400,550,START)

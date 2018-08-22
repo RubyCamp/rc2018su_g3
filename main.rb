@@ -11,17 +11,14 @@ Window.height = 720
 Scene.add(:title, Title::Director.new)
 Scene.add(:game, Game::Director.new)
 Scene.add(:ready, Ready::Director.new)
-# Scene.add(:result, Result::Director.new)
+Scene.add(:result, Result::Director.new)
 
 # Scene[:title].class::BGM.loop_count = -1 # 無限ループ
 # Scene[:title].class::BGM.play
 
-font = Font.new(32)
-
 Scene.current = :title
 
 Window.loop do
-	break if Input.key_push?(K_ESCAPE)
-	Scene.play
-
+  break if Input.key_push?(K_ESCAPE)
+  Scene.play
 end

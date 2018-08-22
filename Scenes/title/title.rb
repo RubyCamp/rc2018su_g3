@@ -1,6 +1,6 @@
 module Title
   class Director
-    BACKGROUND = Image.load('images/mog05_1.png')
+    BACKGROUND = Image.load('images/mog_title.png')
     START = Image.load('images/start.png')
     def play
     	Window.draw(0, 0, BACKGROUND)

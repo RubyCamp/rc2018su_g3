@@ -9,6 +9,7 @@ module Ready
     RMOUSE.set_color_key([255,255,255])
     RKEYBOARD = Image.load('images/keyboardready.png')
     RKEYBOARD.set_color_key([255,255,255])
+    BGM = Sound.new('sounds/title.wav')
     FONT = Font.new(30,"MS 明朝")
 def initialize
   @mouse_player=0
@@ -40,7 +41,8 @@ def play
       if @key_player == 1 && @mouse_player == 1
         @key_player = 0
         @mouse_player = 0
-
+        BGM.stop
+        $i=0
         Scene.current = :game
       end
     end

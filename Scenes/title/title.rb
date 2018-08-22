@@ -2,11 +2,18 @@ module Title
   class Director
     BACKGROUND = Image.load('images/mog_title.png')
     START = Image.load('images/start.png')
+    BGM = Sound.new('sounds/title.wav')
+
     def initialize
       $p1points = 0
       $p2points = 0
+      $i=0
     end
     def play
+        if $i==0
+        $i=1
+        BGM.play
+      end
     	Window.draw(0, 0, BACKGROUND)
       Window.draw(250,480,START)
 

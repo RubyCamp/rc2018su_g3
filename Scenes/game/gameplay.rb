@@ -142,7 +142,7 @@ module Game
     		mogu.drawMogura
     	end
 
-    	@mouse.clickMouse
+
 
     	for mogu in @mogura do
     		mogu.hitMogura(@mouse.x,@mouse.y,@mouse.radius,@mouse.sonzai)
@@ -188,6 +188,9 @@ module Game
       end
       Window.draw(@kame_x,500,$image_kame)
       Window.draw(@usa_x,500,$image_usa)
+
+      @mouse.clickMouse
+
     end
   end
 end

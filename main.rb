@@ -5,6 +5,7 @@ require_relative 'scenes/ready/ready'
 require_relative 'scenes/game/gameplay'
 require_relative 'scenes/result/result'
 require_relative 'scenes/staff/staff'
+require_relative 'scenes/rule/rule'
 require_relative "load"
 
 $who_player = 0
@@ -22,10 +23,10 @@ Scene.add(:game, Game::Director.new)
 Scene.add(:ready, Ready::Director.new)
 Scene.add(:result, Result::Director.new)
 Scene.add(:staff, Staff::Director.new)
+Scene.add(:rule, Rule::Director.new)
 
 Scene.current = :title
 
-sleep(1)
 Window.loop do
   break if Input.key_push?(K_ESCAPE) #ESCキーでゲーム終了
   Scene.play

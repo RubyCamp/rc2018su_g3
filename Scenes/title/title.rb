@@ -9,6 +9,7 @@ module Title
     VOLM.set_color_key([255,255,255])
     STAFF = Image.load('images/staff.png')
     STITLE = Sound.new('sounds/su_title.wav')
+    RULE = Image.load('images/ruru_btn.png')
 
     def initialize
       @su_y1 = 300
@@ -36,8 +37,8 @@ module Title
       Window.draw(420,@su_y2,@big_su)
       Window.draw(650,520,VOLP)
       Window.draw(700,520,VOLM)
-      Window.draw(470,140,STAFF)
-
+      Window.draw(470,150,STAFF)
+      Window.draw(20,500,RULE)
       if @su_muki
         @su_y1 += 2
         @su_y2 -= 2
@@ -64,10 +65,19 @@ module Title
 
       ### Staff画面に遷移する ###
 
-      if Input.mouse_x >= 470 && Input.mouse_x <= 779 && Input.mouse_y >= 140 && Input.mouse_y <= 214
+      if Input.mouse_x >= 470 && Input.mouse_x <= 779 && Input.mouse_y >= 150 && Input.mouse_y <= 224
         if Input.mouse_down?(M_LBUTTON)
 
           Scene.current = :staff
+        end
+      end
+
+      ### rule画面に遷移する ###
+
+      if Input.mouse_x >= 20 && Input.mouse_x <=237  && Input.mouse_y >= 500 && Input.mouse_y <= 574
+        if Input.mouse_down?(M_LBUTTON)
+
+          Scene.current = :rule
         end
       end
 

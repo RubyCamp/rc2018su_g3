@@ -1,6 +1,10 @@
 class Mogura
   attr_reader :x_num, :y_num, :point
 
+  DAMAGE_S_1=Sound.new('sounds/su_die1.wav')
+  DAMAGE_S_2=Sound.new('sounds/su_ite.wav')
+  DAMAGE_M=Sound.new('sounds/konoyaro.wav')
+
   def initialize(key_code,x,y)
     @key_code = key_code
     @x_num = x
@@ -90,6 +94,15 @@ class Mogura
 
       if a+b <= c
         @damage = true
+        if @current_character==:matzu
+          DAMAGE_M.play
+        else
+          if @x_num%2==0
+            DAMAGE_S_1.play
+          else
+            DAMAGE_S_2.play
+          end
+        end
       end
     end
   end

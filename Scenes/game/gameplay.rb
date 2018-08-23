@@ -169,7 +169,7 @@ module Game
         @waiting += 1
         @usa_x = 630
 
-        if @waiting >= 100
+        if @waiting >= 0
           if $who_player == 0
             $who_player = 1
             $p1points = @count_point

@@ -7,6 +7,7 @@ module Title
     VOLP.set_color_key([255,255,255])
     VOLM = Image.load('images/vol-.png')
     VOLM.set_color_key([255,255,255])
+    STAFF = Image.load('images/staff.png')
 
     def initialize
       @su_y1 = 300
@@ -30,6 +31,7 @@ module Title
       Window.draw(420,@su_y2,@su_gazo)
       Window.draw(650,520,VOLP)
       Window.draw(700,520,VOLM)
+      Window.draw(470,120,STAFF)
 
       if @su_muki
         @su_y1 += 2
@@ -52,6 +54,13 @@ module Title
         @ikari_count = 0
       elsif @ikari_count >= 60
         @su_gazo = $image_big_ikari
+      end
+      ### Staff画面に遷移する ###
+
+      if Input.mouse_x >= 470 && Input.mouse_x <= 779 && Input.mouse_y >= 120 && Input.mouse_y <= 194
+        if Input.mouse_down?(M_LBUTTON)
+          Scene.current = :staff
+        end
       end
 
       ### Volume変更する ###

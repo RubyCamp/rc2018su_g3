@@ -29,3 +29,9 @@ $image_kame = Image.load("load/kame.png")
 $image_kame.set_color_key(C_WHITE)
 
 $image_goal = Image.load("load/goal.png")
+
+$image_hammer = Image.load("load/hammer.png")
+$image_hammer.set_color_key([163,73,164])
+
+$image_hammer_kill = Image.load("load/hammer_kill.png")
+$image_hammer_kill.set_color_key([163,73,164])

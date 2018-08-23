@@ -1,6 +1,6 @@
 module Result
   class Director
-  	BACKGROUND = Image.load('images/su.png')
+  	BACKGROUND = Image.load('images/mog_stage.png')
     P1 = Image.load('images/keyboard.png')
     P2 = Image.load('images/mouse.png')
     FONT = Font.new(40,"MS 明朝")

@@ -79,7 +79,7 @@ module Title
 
       #ｘ座標が250px ~ 473px,ｙ座標が480px ~ 566pxの範囲でマウスがクリックされたとき
       if Input.mouse_x >= 250 && Input.mouse_x <= 473 && Input.mouse_y >= 480 && Input.mouse_y <= 566
-        if Input.mouse_down?(M_LBUTTON)
+        if Input.mouse_push?(M_LBUTTON)
           Scene.current = :ready
         end
       end

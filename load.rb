@@ -22,8 +22,6 @@ $image_matzu_ready.set_color_key([163,73,164])
 $image_su_ready = Image.load("load/su_ready.png")
 $image_su_ready.set_color_key([163,73,164])
 
-$image_station=Image.load("load/station.png")
-
 $image_usa=Image.load("load/usa.png")
 $image_usa.set_color_key(C_BLACK)
 

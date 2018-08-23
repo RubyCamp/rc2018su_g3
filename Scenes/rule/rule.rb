@@ -8,7 +8,7 @@ module Rule
         Window.draw(650,50,RETURN)
 
         #ｘ座標が250px ~ 473px,ｙ座標が480px ~ 566pxの範囲でマウスがクリックされたとき
-        if Input.mouse_x >= 650 && Input.mouse_x <= 730 && Input.mouse_y >= 50 && Input.mouse_y <= 100
+        if Input.mouse_x >= 650 && Input.mouse_x <= 730 && Input.mouse_y >= 50 && Input.mouse_y <= 200
           if Input.mouse_push?(M_LBUTTON)
             Scene.current = :title
           end

@@ -8,7 +8,6 @@ class Mogura
     @x = 40 + x*80
     @y = 250 + y*125
     @y_up = @y
-    @image = $image_matzu
 
     @characters = {:matzu => [$image_matzu,$image_matzu_ikari],
                    :su => [$image_su,$image_su_ikari]}
@@ -79,7 +78,7 @@ class Mogura
 
   def drawMogura
     if @sonzai
-      Window.draw(@x,@y_up-35,@image)
+      Window.draw(@x,@y_up-35,@current_image)
     end
   end
 

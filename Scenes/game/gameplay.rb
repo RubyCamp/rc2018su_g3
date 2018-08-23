@@ -21,7 +21,7 @@ module Game
 
       @usa_x = 50
       @kame_x = 25
-      @usa_limit = 810
+      @usa_limit = 630
 
       @ana_image = Image.load("images/ana.png") #モグラの穴
       @ana_image.set_color_key([163,73,164])
@@ -157,8 +157,8 @@ module Game
 
       ### うさぎとかめ ### 
 
-      @kame_x += 0.05 #かめの進む速度
-      @usa_x += 3 #うさぎの進む速度
+      @kame_x += 0.01 #かめの進む速度
+      @usa_x += 0.5 #うさぎの進む速度
 
       Window.draw(@kame_x,500,$image_kame)
       Window.draw(@usa_x,500,$image_usa)

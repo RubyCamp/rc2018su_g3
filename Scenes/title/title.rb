@@ -31,7 +31,7 @@ module Title
       Window.draw(420,@su_y2,@su_gazo)
       Window.draw(650,520,VOLP)
       Window.draw(700,520,VOLM)
-      Window.draw(470,120,STAFF)
+      Window.draw(470,140,STAFF)
 
       if @su_muki
         @su_y1 += 2
@@ -57,7 +57,7 @@ module Title
       end
       ### Staff画面に遷移する ###
 
-      if Input.mouse_x >= 470 && Input.mouse_x <= 779 && Input.mouse_y >= 120 && Input.mouse_y <= 194
+      if Input.mouse_x >= 470 && Input.mouse_x <= 779 && Input.mouse_y >= 140 && Input.mouse_y <= 214
         if Input.mouse_down?(M_LBUTTON)
           Scene.current = :staff
         end

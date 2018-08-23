@@ -14,7 +14,14 @@ class Mogura
 
     @characters = {:matzu => [$image_matzu,$image_matzu_ikari],
                    :su => [$image_su,$image_su_ikari]}
-    @current_character = :matzu
+
+    if $who_player == 0
+      @current_character = :matzu
+    else
+      @current_character = :su
+    end
+
+
     @current_image = @characters[@current_character][0]
 
     @sonzai = false
@@ -89,31 +96,7 @@ class Mogura
   end
 
 
-  def getX
-    return @x_num
-  end
 
-  def getY
-    return @y_num
-  end
-
-  def selectCharacter
-
-    if @matzu
-      if @damage
-        @image=$image_matzu_ikari
-      else
-        @image=$image_matzu
-      end
-    else
-      if @damage
-        @image=$image_su_ikari
-      else
-        @image=$image_su
-      end
-    end
-
-  end
 
 
   def hitMogura(x,y,r,sonzai)
@@ -125,6 +108,16 @@ class Mogura
       if a+b<=c
         @damage=true
       end
+    end
+  end
+
+
+
+  def switchCharacter
+    if @damage
+      @current_image = @characters[@current_character][1]
+    else
+      @current_image = @characters[@current_character][0]
     end
   end
 

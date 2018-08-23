@@ -7,7 +7,7 @@ require_relative 'kotowaza_sentence'
 
 module Game
   class Director
-    BACKGROUND = Image.load('load/station.png')
+    BACKGROUND = Image.load('images/mog_stage.png')
   	FONT = Font.new(40,"MS 明朝")
     BGM = Sound.new('sounds/game.wav')
     def initialize
@@ -21,7 +21,8 @@ module Game
       @usa_x=50
       @kame_x=25
 
-      @image=Image.new(80,40,[255,0,0]) #モグラの穴
+      @ana_image = Image.load("images/ana.png") #モグラの穴
+      @ana_image.set_color_key([163,73,164])
 
       @mouse=Mouse.new
 
@@ -108,16 +109,14 @@ module Game
 
   	def play
       Window.draw(0,0,BACKGROUND)
-      Window.draw_font(500,200,"GAME SCREEN",FONT)
-      Window.draw_font(500,500,"PUSH A!",FONT)
+
       Scene.current = :result if Input.key_push?(K_SPACE)
 
-          if $bgmplaying==0
-
-          BGM.set_volume($volume)
-          $bgmplaying=1
-          BGM.play
-        end
+      if $bgmplaying == 0
+        BGM.set_volume($volume)
+        $bgmplaying = 1
+        BGM.play
+      end
 
       @str.update
       check_bool=@sentence.check(@str)
@@ -129,19 +128,6 @@ module Game
       @sentence.draw
       @sentence.draw_kotowaza
 
-      if @usa_x<300
-        @usa_x+=2
-      elsif @usa_x<350
-        @usa_x+=1
-      elsif @usa_x<400
-        @usa_x+=2
-      elsif @usa_x<500
-        @usa_x+=0.2
-      elsif @usa_x<600
-        @usa_x+=0.1
-      else
-        @usa_x+=5
-      end
 
     	for mogu in @mogura do
     		mogu.upMogura
@@ -151,7 +137,7 @@ module Game
 
     	for i in 0..2
     		for j in 0..8
-    			Window.draw(40+j*80,250+i*125,@image)
+    			Window.draw(40+j*80,255+i*125,@ana_image)
     		end
     	end
 
@@ -159,12 +145,17 @@ module Game
 
     	for mogu in @mogura do
     		mogu.hitMogura(@mouse.x,@mouse.y,@mouse.radius,@mouse.sonzai)
+
     		if mogu.point
-    			@count_point+=1
+    			@count_point += 1
+    			print(@count_point.to_s+"\n")
+
     		end
     	end
 
-      if @usa_x>@kame_x
+      @usa_x += 3
+
+      if @usa_x > @kame_x
         Window.draw(@kame_x,500,$image_kame)
         Window.draw(@usa_x,500,$image_usa)
       else
@@ -172,25 +163,26 @@ module Game
         Window.draw(@kame_x,500,$image_kame)
       end
 
-      if @usa_x>=880
-        if $who_player==0
-          $who_player=1
-          $p1points=@count_point
+
+      if @usa_x >= 880
+        if $who_player == 0
+          $who_player = 1
+          $p1points = @count_point
+          BGM.stop
+          $bgmplaying = 0
           Scene.current = :ready
         else
-          $who_player=0
-          $p2points=@count_point
+          $who_player = 0
+          $p2points = @count_point
+          BGM.stop
+          $bgmplaying = 0
+
           Scene.current = :result
         end
         print("p1:"+$p1points.to_s+"\n")
         print("p2:"+$p2points.to_s+"\n")
         initialize
-
-
-        BGM.stop
-        $bgmplaying = 0
-        Scene.current = :result
-
+c
       end
 
       if KotowazaSentence::KOTO_BOX.length == @sentence.count

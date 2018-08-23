@@ -10,7 +10,7 @@ require_relative "load"
 $who_player=0
 
 $who_player = 0
-$p1points = 2
+$p1points = 0
 $p2points = 0
 
 $bgmplaying = 0

@@ -66,7 +66,7 @@ module Title
       ### Staff画面に遷移する ###
 
       if Input.mouse_x >= 470 && Input.mouse_x <= 779 && Input.mouse_y >= 150 && Input.mouse_y <= 224
-        if Input.mouse_down?(M_LBUTTON)
+        if Input.mouse_push?(M_LBUTTON)
 
           Scene.current = :staff
         end
@@ -75,7 +75,7 @@ module Title
       ### rule画面に遷移する ###
 
       if Input.mouse_x >= 20 && Input.mouse_x <=237  && Input.mouse_y >= 500 && Input.mouse_y <= 574
-        if Input.mouse_down?(M_LBUTTON)
+        if Input.mouse_push?(M_LBUTTON)
 
           Scene.current = :rule
         end

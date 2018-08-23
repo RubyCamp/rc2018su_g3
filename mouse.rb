@@ -1,6 +1,6 @@
 class Mouse
-  attr_reader :x, :y, :radius, :sonzai
-  attr_writer :radius
+  attr_reader :x, :y, :sonzai
+  attr_accessor :radius
 
   def initialize
     @button = M_LBUTTON #左クリックする
@@ -8,8 +8,8 @@ class Mouse
     @sonzai = false 
     @sonzai_count = 0
     
-    @mouse_x = 0 # MouseのX座標
-    @mouse_y = 0 # MouseのY座標
+    @x = 0 # MouseのX座標
+    @y = 0 # MouseのY座標
     @radius = 20 # Mouseの範囲円の半径
 
     @image = Image.new(100,100,C_BLUE)
@@ -21,8 +21,8 @@ class Mouse
     if @sonzai == false
       if Input.mouseDown?(@button)
         @sonzai = true
-        @mouse_x = Input.mousePosX #マウスがクリックされたX座標
-        @mouse_y = Input.mousePosY #マウスがクリックされたY座標
+        @x = Input.mousePosX #マウスがクリックされたX座標
+        @y = Input.mousePosY #マウスがクリックされたY座標
       end
     else
       @sonzai_count += 1
@@ -34,7 +34,7 @@ class Mouse
     end
 
     if @sonzai == true
-      Window.draw(@mouse_x - @image.width/2,@mouse_y - @image.height/2, @image) #マウスの範囲円を描画する
+      Window.draw(@x - @image.width/2,@y - @image.height/2, @image) #マウスの範囲円を描画する
     end
   end
 end

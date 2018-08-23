@@ -27,3 +27,5 @@ $image_usa.set_color_key(C_BLACK)
 
 $image_kame = Image.load("load/kame.png")
 $image_kame.set_color_key(C_WHITE)
+
+$image_goal = Image.load("load/goal.png")

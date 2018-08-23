@@ -11,7 +11,7 @@ module Ready
     KEYBOARD.set_color_key([255,255,255])
     RKEYBOARD = Image.load('images/keyboardready.png')
     RKEYBOARD.set_color_key([255,255,255])
-    
+
     BGM = Sound.new('sounds/title.wav')
     FONT = Font.new(30,"MS 明朝")
 
@@ -28,11 +28,11 @@ module Ready
 
       # Player1 == Matzu, Player == Su
       if $who_player == 0 
-        Window.draw(0,0,$image_matzu_ready)
-        Window.draw(400,0,$image_su_ready)
-      else
         Window.draw(0,0,$image_su_ready)
         Window.draw(400,0,$image_matzu_ready)
+      else
+        Window.draw(0,0,$image_matzu_ready)
+        Window.draw(400,0,$image_su_ready)
       end
 
       if Input.key_push?(K_RETURN)

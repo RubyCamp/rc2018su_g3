@@ -102,6 +102,8 @@ class Mogura
 
     if @damage 
       @current_image = @characters[@current_character][1]
+    else 
+      @current_image = @characters[@current_character][0]
     end
   end
 end

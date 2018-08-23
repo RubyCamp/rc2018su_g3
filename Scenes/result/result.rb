@@ -1,5 +1,6 @@
 module Result
   class Director
+
   	BACKGROUND = Image.load('images/mog_stage.png')
     P1 = Image.load('images/keyboard.png')
     P2 = Image.load('images/mouse.png')
@@ -19,9 +20,11 @@ module Result
 
       @timewait += 1
 
+
       if $p1points == $p2points
         Window.draw_font(270,200,"引き分け!",FONT)
       elsif $p1points > $p2points
+
         Window.draw_font(270,200,"MATZUの勝利!",FONT)
         Window.draw(100,500,P1)
         MATZU.play
@@ -41,6 +44,7 @@ module Result
         @timewait = 0
         Scene.current = :title
       end
+
 
       Window.draw_font(100,500,"スペースキーでタイトルに戻る",FONT)
   	end

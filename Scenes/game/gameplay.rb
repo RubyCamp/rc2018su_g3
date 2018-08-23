@@ -109,7 +109,7 @@ module Game
 
   	def play
       Window.draw(0,0,BACKGROUND)
-     
+
       Scene.current = :result if Input.key_push?(K_SPACE)
 
       if $bgmplaying == 0
@@ -128,9 +128,10 @@ module Game
       @sentence.draw
       @sentence.draw_kotowaza
 
+
     	for mogu in @mogura do
     		mogu.upMogura
-    		mogu.switchCharacter
+    		mogu.selectCharacter
     		mogu.drawMogura
     	end
 
@@ -144,9 +145,11 @@ module Game
 
     	for mogu in @mogura do
     		mogu.hitMogura(@mouse.x,@mouse.y,@mouse.radius,@mouse.sonzai)
-    		if mogu.point 
+
+    		if mogu.point
     			@count_point += 1
     			print(@count_point.to_s+"\n")
+
     		end
     	end
 
@@ -160,25 +163,30 @@ module Game
         Window.draw(@kame_x,500,$image_kame)
       end
 
+
       if @usa_x >= 880
         if $who_player == 0
           $who_player = 1
           $p1points = @count_point
           BGM.stop
           $bgmplaying = 0
-          Scene.current = :ready 
+          Scene.current = :ready
         else
           $who_player = 0
           $p2points = @count_point
           BGM.stop
           $bgmplaying = 0
+
           Scene.current = :result
         end
+        print("p1:"+$p1points.to_s+"\n")
+        print("p2:"+$p2points.to_s+"\n")
         initialize
+c
       end
 
       if KotowazaSentence::KOTO_BOX.length == @sentence.count
-        #break
+        @sentence.initialize
       end
 
     end

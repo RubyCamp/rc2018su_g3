@@ -1,7 +1,9 @@
 class Mogura
-  attr_reader :x_num,:y_num,:point
+  attr_reader :x_num, :y_num, :point
+
 
   def initialize(key_code,x,y)
+
     @key_code = key_code
     @x_num = x
     @y_num = y
@@ -12,11 +14,13 @@ class Mogura
 
     @characters = {:matzu => [$image_matzu,$image_matzu_ikari],
                    :su => [$image_su,$image_su_ikari]}
+
     if $who_player == 0
       @current_character = :matzu
     else
-      @current_character = :su 
+      @current_character = :su
     end
+
 
     @current_image = @characters[@current_character][0]
 
@@ -24,8 +28,14 @@ class Mogura
     @damage = false
     @damage_count = 0
 
+    @matzu=nil
+    if $who_player==0
+      @matzu=true
+    else
+      @matzu=false
+    end
+
     @kirikaeshi = true
-    @matzu = true
     @@r = 40
     @center_x = @x + @@r
     @center_y = @y_up + @@r
@@ -76,13 +86,18 @@ class Mogura
       @sonzai=false
       @kirikaeshi=true
       @y_up=@y
+      @damage=false
   end
 
   def drawMogura
     if @sonzai
-      Window.draw(@x,@y_up-35,@current_image)
+      Window.draw(@x,@y_up-35,@image)
     end
   end
+
+
+
+
 
   def hitMogura(x,y,r,sonzai)
     if @sonzai==true && sonzai==true
@@ -96,11 +111,14 @@ class Mogura
     end
   end
 
+
+
   def switchCharacter
-    if @damage 
+    if @damage
       @current_image = @characters[@current_character][1]
-    else 
+    else
       @current_image = @characters[@current_character][0]
     end
   end
+
 end

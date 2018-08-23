@@ -21,7 +21,6 @@ module Title
       #BGMを流す
       if $bgmplaying == 0
         $bgmplaying = 1
-
         BGM.play
       end
 
@@ -55,6 +54,8 @@ module Title
       elsif @ikari_count >= 60
         @su_gazo = $image_big_ikari
       end
+
+
       ### Staff画面に遷移する ###
 
       if Input.mouse_x >= 470 && Input.mouse_x <= 779 && Input.mouse_y >= 120 && Input.mouse_y <= 194
@@ -62,6 +63,7 @@ module Title
           Scene.current = :staff
         end
       end
+
 
       ### Volume変更する ###
 

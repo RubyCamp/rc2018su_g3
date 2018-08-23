@@ -19,7 +19,7 @@ module Ready
 
     def play
       Window.draw(0, 0, BACKGROUND)
-      #  Window.draw_font(20,100,"エンターキーを押してね　　　      マウスをクリックしてね",FONT)
+    Window.draw_font(20,100,"エンターキーを押してね　　　      マウスをクリックしてね",FONT)
       if @key_player==0
         Window.draw(50, 200, KEYBOARD)
       elsif @key_player==1

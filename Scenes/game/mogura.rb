@@ -1,24 +1,31 @@
 class Mogura
+  attr_reader :x_num,:y_num,:point
+
   def initialize(key_code,x,y)
-    @key_code=key_code
-    @x_num=x
-    @y_num=y
-    @x=40+x*80
-    @y=250+y*125
-    @y_up=@y
-    @image=$image_matzu
+    @key_code = key_code
+    @x_num = x
+    @y_num = y
+    @x = 40 + x*80
+    @y = 250 + y*125
+    @y_up = @y
+    @image = $image_matzu
 
-    @sonzai=false
-    @damage=false
-    @damage_count=0
+    @characters = {:matzu => [$image_matzu,$image_matzu_ikari],
+                   :su => [$image_su,$image_su_ikari]}
+    @current_character = :matzu 
+    @current_image = @characters[@current_character][0]
 
-    @kirikaeshi=true
-    @matzu=true
-    @@r=40
-    @center_x=@x+@@r
-    @center_y=@y_up+@@r
+    @sonzai = false
+    @damage = false
+    @damage_count = 0
 
-    @point=false
+    @kirikaeshi = true
+    @matzu = true
+    @@r = 40
+    @center_x = @x + @@r
+    @center_y = @y_up + @@r
+
+    @point = false
   end
 
   def pushKey(key_code,bool)
@@ -58,51 +65,18 @@ class Mogura
       @damage=false
       self.downMogura
     end
-
   end
 
-  def getPoint
-    return @point
+  def downMogura
+      @sonzai=false
+      @kirikaeshi=true
+      @y_up=@y
   end
 
   def drawMogura
     if @sonzai
-      Window.draw(@x,@y_up-35,@image)
+      Window.draw(@x,@y_up-35,@current_image)
     end
-  end
-
-  def getX
-    return @x_num
-  end
-
-  def getY
-    return @y_num
-  end
-
-  def selectCharacter
-
-    if Input.key_push?(K_RETURN)
-      if @matzu
-        @matzu=false
-      else
-        @matzu=true
-      end
-    end
-
-    if @matzu
-      if @damage
-        @image=$image_matzu_ikari
-      else
-        @image=$image_matzu
-      end
-    else
-      if @damage
-        @image=$image_su_ikari
-      else
-        @image=$image_su
-      end
-    end
-
   end
 
   def hitMogura(x,y,r,sonzai)
@@ -117,10 +91,17 @@ class Mogura
     end
   end
 
-  def downMogura
-    @sonzai=false
-    @kirikaeshi=true
-    @y_up=@y
-  end
+  def switchCharacter
+    if Input.key_push?(K_RETURN)
+      if @current_character == :matzu 
+        @current_character = :su 
+      else
+        @current_character = :matzu 
+      end
+    end
 
+    if @damage 
+      @current_image = @characters[@current_character][1]
+    end
+  end
 end

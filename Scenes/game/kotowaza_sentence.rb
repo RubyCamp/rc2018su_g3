@@ -42,7 +42,7 @@ class KotowazaSentence
   "けんどちょうらい"
 	]
 
-  def initialize(x , y )
+  def initialize(x,y)
     @x = x
     @y = y
     @charnum = 0
@@ -51,18 +51,14 @@ class KotowazaSentence
     @count = 0
     @koto_str = " "
     @font = Font.new(20)
-
   end
 
   def koto_each
-
       #文字を置く幅のまえの幅
       prev_width = 0
       #キャラ配列の初期化
       @chars = []
       kotoroma_str = koto_shuffle
-
-
 
       #width_index は　i を使うのに必要
       kotoroma_str.each_char.with_index do |char,i|
@@ -93,9 +89,7 @@ class KotowazaSentence
     end
   end
 
-
-
-#一文字ずつ色を変える
+  #一文字ずつ色を変える
 
   def check(str)
     return false if str.str == " "
@@ -148,7 +142,4 @@ class KotowazaSentence
       prev_width + 18
     end
   end
-
-
-
 end

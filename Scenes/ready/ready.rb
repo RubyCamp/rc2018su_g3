@@ -11,17 +11,19 @@ module Ready
     RKEYBOARD.set_color_key([255,255,255])
     BGM = Sound.new('sounds/title.wav')
     FONT = Font.new(30,"MS 明朝")
-def initialize
-  @mouse_player=0
-  @key_player=0
-end
-def play
+
+    def initialize
+      @mouse_player=0
+      @key_player=0
+    end
+
+    def play
       Window.draw(0, 0, BACKGROUND)
     Window.draw_font(20,100,"エンターキーを押してね　　　      マウスをクリックしてね",FONT)
       if @key_player==0
-      Window.draw(50, 200, KEYBOARD)
-    elsif @key_player==1
-      Window.draw(50, 200, RKEYBOARD)
+        Window.draw(50, 200, KEYBOARD)
+      elsif @key_player==1
+        Window.draw(50, 200, RKEYBOARD)
       end
 
       if @mouse_player == 0

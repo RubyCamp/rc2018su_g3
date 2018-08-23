@@ -9,6 +9,7 @@ module Game
   class Director
     BACKGROUND = Image.load('load/station.png')
   	FONT = Font.new(40,"MS 明朝")
+    BGM = Sound.new('sounds/game.wav')
     def initialize
 
       @str = Write.new()
@@ -114,6 +115,13 @@ module Game
       Window.draw_font(500,500,"PUSH A!",FONT)
       Scene.current = :result if Input.key_push?(K_SPACE)
 
+          if $bgmplaying==0
+
+          BGM.set_volume($volume)
+          $bgmplaying=1
+          BGM.play
+        end
+
       @str.update
       check_bool=@sentence.check(@str)
       #print(@sentence.check(@str).to_s+"\n")
@@ -179,6 +187,8 @@ module Game
           $who_player=0
         end
         initialize
+        BGM.stop
+        $bgmplaying = 0
         Scene.current = :result
       end
 

@@ -10,6 +10,11 @@ class Mogura
     @y_up = @y
     @image = $image_matzu
 
+    @characters = {:matzu => [$image_matzu,$image_matzu_ikari],
+                   :su => [$image_su,$image_su_ikari]}
+    @current_character = :matzu 
+    @current_image = @characters[@current_character][0]
+
     @sonzai = false
     @damage = false
     @damage_count = 0
@@ -17,8 +22,8 @@ class Mogura
     @kirikaeshi = true
     @matzu = true
     @@r = 40
-    @center_x = @x+@@r
-    @center_y = @y_up+@@r
+    @center_x = @x + @@r
+    @center_y = @y_up + @@r
 
     @point = false
   end
@@ -60,39 +65,18 @@ class Mogura
       @damage=false
       self.downMogura
     end
+  end
 
+  def downMogura
+      @sonzai=false
+      @kirikaeshi=true
+      @y_up=@y
   end
 
   def drawMogura
     if @sonzai
-      Window.draw(@x,@y_up-35,@image)
+      Window.draw(@x,@y_up-35,@current_image)
     end
-  end
-
-  def selectCharacter
-
-    if Input.key_push?(K_RETURN)
-      if @matzu
-        @matzu=false
-      else
-        @matzu=true
-      end
-    end
-
-    if @matzu
-      if @damage
-        @image=$image_matzu_ikari
-      else
-        @image=$image_matzu
-      end
-    else
-      if @damage
-        @image=$image_su_ikari
-      else
-        @image=$image_su
-      end
-    end
-
   end
 
   def hitMogura(x,y,r,sonzai)
@@ -107,9 +91,17 @@ class Mogura
     end
   end
 
-  def downMogura
-    @sonzai=false
-    @kirikaeshi=true
-    @y_up=@y
+  def switchCharacter
+    if Input.key_push?(K_RETURN)
+      if @current_character == :matzu 
+        @current_character = :su 
+      else
+        @current_character = :matzu 
+      end
+    end
+
+    if @damage 
+      @current_image = @characters[@current_character][1]
+    end
   end
 end

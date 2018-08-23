@@ -18,8 +18,10 @@ module Title
 
     def play
       #BGMを流す
-      $bgmplaying = 1
-      BGM.play
+      if $bgmplaying == 0
+        $bgmplaying = 1
+        BGM.play
+      end
 
     	Window.draw(0, 0, BACKGROUND)
       Window.draw(250,480,START)

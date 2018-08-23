@@ -24,7 +24,6 @@ module Result
       if $p1points == $p2points
         Window.draw_font(270,200,"引き分け!",FONT)
       elsif $p1points > $p2points
-
         Window.draw_font(270,200,"MATZUの勝利!",FONT)
         Window.draw(100,500,P1)
         MATZU.play
@@ -44,7 +43,6 @@ module Result
         @timewait = 0
         Scene.current = :title
       end
-
 
       Window.draw_font(100,500,"スペースキーでタイトルに戻る",FONT)
   	end

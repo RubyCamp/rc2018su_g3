@@ -1,27 +1,26 @@
 class Mogura
-  attr_reader :point
-  attr_reader :x_num,:y_num
+  attr_reader :x_num,:y_num,:point
 
   def initialize(key_code,x,y)
-    @key_code=key_code
-    @x_num=x
-    @y_num=y
-    @x=40+x*80
-    @y=250+y*125
-    @y_up=@y
-    @image=$image_matzu
+    @key_code = key_code
+    @x_num = x
+    @y_num = y
+    @x = 40 + x*80
+    @y = 250 + y*125
+    @y_up = @y
+    @image = $image_matzu
 
-    @sonzai=false
-    @damage=false
-    @damage_count=0
+    @sonzai = false
+    @damage = false
+    @damage_count = 0
 
-    @kirikaeshi=true
-    @matzu=true
-    @@r=40
-    @center_x=@x+@@r
-    @center_y=@y_up+@@r
+    @kirikaeshi = true
+    @matzu = true
+    @@r = 40
+    @center_x = @x+@@r
+    @center_y = @y_up+@@r
 
-    @point=false
+    @point = false
   end
 
   def pushKey(key_code,bool)

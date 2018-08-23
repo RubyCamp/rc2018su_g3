@@ -120,12 +120,6 @@ module Game
         BGM.play
       end
 
-      #穴を表示する
-      for i in 0..2
-        for j in 0..8
-          Window.draw(40+j*80,255+i*125,@ana_image)
-        end
-      end
 
       @str.update
       check_bool=@sentence.check(@str)
@@ -158,7 +152,14 @@ module Game
     		end
     	end
 
-      ### うさぎとかめ ### 
+      #穴を表示する
+      for i in 0..2
+        for j in 0..8
+          Window.draw(40+j*80,255+i*125,@ana_image)
+        end
+      end
+
+      ### うさぎとかめ ###
 
       @kame_x += 0.01 #かめの進む速度
       @usa_x += 0.38 #うさぎの進む速度

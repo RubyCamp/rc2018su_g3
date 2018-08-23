@@ -45,7 +45,7 @@ class Mogura
       if @kirikaeshi
         @y_up -= 2
       else
-        @y_up += 2
+        @y_up += 1
       end
 
       if @y_up <= @y-50

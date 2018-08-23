@@ -138,7 +138,7 @@ module Game
 
     	for mogu in @mogura do
     		mogu.upMogura
-    		mogu.selectCharacter
+    		mogu.switchCharacter
     		mogu.drawMogura
     	end
 

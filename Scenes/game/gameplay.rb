@@ -9,7 +9,7 @@ module Game
   class Director
     BACKGROUND = Image.load('images/mog_stage.png')
   	FONT = Font.new(40,"MS 明朝")
-
+    BGM = Sound.new('sounds/game.wav')
     def initialize
 
       @str = Write.new()
@@ -110,6 +110,14 @@ module Game
   	def play
       Window.draw(0,0,BACKGROUND)
      
+      Scene.current = :result if Input.key_push?(K_SPACE)
+
+      if $bgmplaying == 0
+        BGM.set_volume($volume)
+        $bgmplaying = 1
+        BGM.play
+      end
+
       @str.update
       check_bool=@sentence.check(@str)
       #print(@sentence.check(@str).to_s+"\n")
@@ -142,7 +150,7 @@ module Game
     		end
     	end
 
-      @usa_x += 0.2
+      @usa_x += 3
 
       if @usa_x > @kame_x
         Window.draw(@kame_x,500,$image_kame)
@@ -156,10 +164,14 @@ module Game
         if $who_player == 0
           $who_player = 1
           $p1points = @count_point
+          BGM.stop
+          $bgmplaying = 0
           Scene.current = :ready 
         else
           $who_player = 0
           $p2points = @count_point
+          BGM.stop
+          $bgmplaying = 0
           Scene.current = :result
         end
         initialize

@@ -8,12 +8,19 @@ class Mogura
     @y_up=@y
     @image=$image_matzu
 
+    @matzu=nil
+    if $who_player==0
+      @matzu=true
+    else
+      @matzu=false
+    end
+
     @sonzai=false
     @damage=false
     @damage_count=0
 
     @kirikaeshi=true
-    @matzu=true
+
     @@r=40
     @center_x=@x+@@r
     @center_y=@y_up+@@r
@@ -81,13 +88,6 @@ class Mogura
 
   def selectCharacter
 
-    if Input.key_push?(K_RETURN)
-      if @matzu
-        @matzu=false
-      else
-        @matzu=true
-      end
-    end
 
     if @matzu
       if @damage

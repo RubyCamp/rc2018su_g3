@@ -6,7 +6,7 @@ require_relative 'scenes/game/gameplay'
 require_relative 'scenes/result/result'
 require_relative "load"
 
-$who_player
+$who_player=0
 
 Window.width = 800
 Window.height = 600

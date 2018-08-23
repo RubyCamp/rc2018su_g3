@@ -133,9 +133,9 @@ module Game
       elsif @usa_x<400
         @usa_x+=2
       elsif @usa_x<500
-        @usa_x+=0.1
+        @usa_x+=0.2
       elsif @usa_x<600
-        @usa_x+=0.05
+        @usa_x+=0.1
       else
         @usa_x+=5
       end
@@ -160,7 +160,6 @@ module Game
     		mogu.hitMogura(@mouse.x,@mouse.y,@mouse.radius,@mouse.sonzai)
     		if mogu.getPoint
     			@count_point+=1
-    			print(@count_point.to_s+"\n")
     		end
     	end
 
@@ -175,17 +174,23 @@ module Game
       if @usa_x>=880
         if $who_player==0
           $who_player=1
+          $p1points=@count_point
+          Scene.current = :ready
         else
           $who_player=0
+          $p2points=@count_point
+          Scene.current = :result
         end
+        print("p1:"+$p1points.to_s+"\n")
+        print("p2:"+$p2points.to_s+"\n")
         initialize
-        Scene.current = :result
+
       end
 
 
 
       if KotowazaSentence::KOTO_BOX.length == @sentence.count
-        #break
+        @sentence.initialize
       end
 
     end

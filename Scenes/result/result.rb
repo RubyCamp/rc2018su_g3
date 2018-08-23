@@ -12,10 +12,10 @@ module Result
       Window.draw_font(100,200,"引き分け!",FONT)
       elsif $p1points > $p2points
         Window.draw_font(100,200,"p1の勝利!",FONT)
-        Window.draw(100,100,P1win)
+        Window.draw(100,200,P1win)
       elsif $p1points < $p2points
         Window.draw_font(100,200,"p2の勝利!",FONT)
-        Window.draw(100,100,P2win)
+        Window.draw(100,200,P2win)
       end
   	  Scene.current = :title if Input.key_push?(K_SPACE)
 

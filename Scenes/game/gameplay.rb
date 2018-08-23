@@ -1,5 +1,9 @@
 require_relative "mogura"
 require_relative "mouse"
+require 'romkan'
+require_relative 'write'
+require_relative 'kotowaza_char'
+require_relative 'kotowaza_sentence'
 
 module Game
   class Director
@@ -7,7 +11,14 @@ module Game
   	FONT = Font.new(40,"MS 明朝")
     def initialize
 
-      @player=0
+      @str = Write.new()
+
+
+      @sentence = KotowazaSentence.new(230,100)
+      @sentence2 = KotowazaSentence.new(230,100)
+      @sentence.koto_each
+
+
       @usa_x=50
       @kame_x=25
 
@@ -103,6 +114,18 @@ module Game
       Window.draw_font(500,500,"PUSH A!",FONT)
       Scene.current = :result if Input.key_push?(K_SPACE)
 
+      @str.update
+      check_bool=@sentence.check(@str)
+      #print(@sentence.check(@str).to_s+"\n")
+      #p @sentence.check(@str)
+      for mogu in @mogura do
+    		mogu.pushKey(@str.key_code,check_bool)
+    	end
+      @sentence.draw
+      @sentence.draw_kotowaza
+
+
+
       if @usa_x<300
         @usa_x+=2
       elsif @usa_x<350
@@ -117,12 +140,7 @@ module Game
         @usa_x+=5
       end
 
-      @mouse.setR
 
-
-    	for mogu in @mogura do
-    		mogu.pushKey(K_A,true)
-    	end
 
     	for mogu in @mogura do
     		mogu.upMogura
@@ -139,7 +157,7 @@ module Game
     	@mouse.clickMouse
 
     	for mogu in @mogura do
-    		mogu.hitMogura(@mouse.getX,@mouse.getY,@mouse.getR,@mouse.getSonzai)
+    		mogu.hitMogura(@mouse.x,@mouse.y,@mouse.radius,@mouse.sonzai)
     		if mogu.getPoint
     			@count_point+=1
     			print(@count_point.to_s+"\n")
@@ -152,6 +170,22 @@ module Game
       else
         Window.draw(@usa_x,500,$image_usa)
         Window.draw(@kame_x,500,$image_kame)
+      end
+
+      if @usa_x>=880
+        if $who_player==0
+          $who_player=1
+        else
+          $who_player=0
+        end
+        initialize
+        Scene.current = :result
+      end
+
+
+
+      if KotowazaSentence::KOTO_BOX.length == @sentence.count
+        #break
       end
 
     end

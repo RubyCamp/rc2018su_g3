@@ -23,7 +23,7 @@ class Mogura
 
   def pushKey(key_code,bool)
 
-    if key_code==@key_code && bool
+    if bool && @key_code==key_code
       @sonzai=true
     end
 

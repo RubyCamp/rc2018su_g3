@@ -110,7 +110,6 @@ module Game
       Window.draw(0,0,BACKGROUND)
       Window.draw_font(500,200,"GAME SCREEN",FONT)
       Window.draw_font(500,500,"PUSH A!",FONT)
-      Scene.current = :result if Input.key_push?(K_SPACE)
 
       @str.update
       check_bool=@sentence.check(@str)
@@ -121,20 +120,6 @@ module Game
     	end
       @sentence.draw
       @sentence.draw_kotowaza
-
-      if @usa_x<300
-        @usa_x+=2
-      elsif @usa_x<350
-        @usa_x+=1
-      elsif @usa_x<400
-        @usa_x+=2
-      elsif @usa_x<500
-        @usa_x+=0.1
-      elsif @usa_x<600
-        @usa_x+=0.05
-      else
-        @usa_x+=5
-      end
 
     	for mogu in @mogura do
     		mogu.upMogura
@@ -153,12 +138,14 @@ module Game
     	for mogu in @mogura do
     		mogu.hitMogura(@mouse.x,@mouse.y,@mouse.radius,@mouse.sonzai)
     		if mogu.point 
-    			@count_point+=1
+    			@count_point += 1
     			print(@count_point.to_s+"\n")
     		end
     	end
 
-      if @usa_x>@kame_x
+      @usa_x += 3
+
+      if @usa_x > @kame_x
         Window.draw(@kame_x,500,$image_kame)
         Window.draw(@usa_x,500,$image_usa)
       else
@@ -166,14 +153,17 @@ module Game
         Window.draw(@kame_x,500,$image_kame)
       end
 
-      if @usa_x>=880
-        if $who_player==0
-          $who_player=1
+      if @usa_x >= 880
+        if $who_player == 0
+          $who_player = 1
+          $p1points = @count_point
+          Scene.current = :ready 
         else
-          $who_player=0
+          $who_player = 0
+          $p2points = @count_point
+          Scene.current = :result
         end
         initialize
-        Scene.current = :result
       end
 
       if KotowazaSentence::KOTO_BOX.length == @sentence.count

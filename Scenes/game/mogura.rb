@@ -12,7 +12,12 @@ class Mogura
 
     @characters = {:matzu => [$image_matzu,$image_matzu_ikari],
                    :su => [$image_su,$image_su_ikari]}
-    @current_character = :matzu 
+    if $who_player == 0
+      @current_character = :matzu
+    else
+      @current_character = :su 
+    end
+
     @current_image = @characters[@current_character][0]
 
     @sonzai = false
@@ -92,14 +97,6 @@ class Mogura
   end
 
   def switchCharacter
-    if Input.key_push?(K_RETURN)
-      if @current_character == :matzu 
-        @current_character = :su 
-      else
-        @current_character = :matzu 
-      end
-    end
-
     if @damage 
       @current_image = @characters[@current_character][1]
     else 

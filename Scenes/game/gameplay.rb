@@ -9,7 +9,7 @@ module Game
   class Director
     BACKGROUND = Image.load('load/station.png')
   	FONT = Font.new(40,"MS 明朝")
-
+    BGM = Sound.new('sounds/game.wav')
     def initialize
 
       @str = Write.new()
@@ -112,6 +112,13 @@ module Game
       Window.draw_font(500,500,"PUSH A!",FONT)
       Scene.current = :result if Input.key_push?(K_SPACE)
 
+          if $bgmplaying==0
+
+          BGM.set_volume($volume)
+          $bgmplaying=1
+          BGM.play
+        end
+
       @str.update
       check_bool=@sentence.check(@str)
       #print(@sentence.check(@str).to_s+"\n")
@@ -152,7 +159,7 @@ module Game
 
     	for mogu in @mogura do
     		mogu.hitMogura(@mouse.x,@mouse.y,@mouse.radius,@mouse.sonzai)
-    		if mogu.point 
+    		if mogu.point
     			@count_point+=1
     		end
     	end
@@ -178,6 +185,12 @@ module Game
         print("p1:"+$p1points.to_s+"\n")
         print("p2:"+$p2points.to_s+"\n")
         initialize
+
+
+=======
+        BGM.stop
+        $bgmplaying = 0
+        Scene.current = :result
 
       end
 

@@ -1,5 +1,5 @@
 class Mogura
-<<<<<<< HEAD
+
   def initialize(key_code,x,y)
     @key_code=key_code
     @x_num=x
@@ -25,9 +25,7 @@ class Mogura
     @@r=40
     @center_x=@x+@@r
     @center_y=@y_up+@@r
-=======
-  attr_reader :x_num,:y_num,:point
->>>>>>> 20b556de1d4964e84e34329ed349f62ce519c011
+
 
   def initialize(key_code,x,y)
     @key_code = key_code
@@ -40,7 +38,7 @@ class Mogura
 
     @characters = {:matzu => [$image_matzu,$image_matzu_ikari],
                    :su => [$image_su,$image_su_ikari]}
-    @current_character = :matzu 
+    @current_character = :matzu
     @current_image = @characters[@current_character][0]
 
     @sonzai = false
@@ -107,7 +105,7 @@ class Mogura
     end
   end
 
-<<<<<<< HEAD
+
   def getX
     return @x_num
   end
@@ -135,8 +133,7 @@ class Mogura
 
   end
 
-=======
->>>>>>> 20b556de1d4964e84e34329ed349f62ce519c011
+
   def hitMogura(x,y,r,sonzai)
     if @sonzai==true && sonzai==true
       a=((@center_x-x)/2)**2
@@ -151,14 +148,14 @@ class Mogura
 
   def switchCharacter
     if Input.key_push?(K_RETURN)
-      if @current_character == :matzu 
-        @current_character = :su 
+      if @current_character == :matzu
+        @current_character = :su
       else
-        @current_character = :matzu 
+        @current_character = :matzu
       end
     end
 
-    if @damage 
+    if @damage
       @current_image = @characters[@current_character][1]
     end
   end

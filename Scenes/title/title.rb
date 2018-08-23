@@ -8,19 +8,24 @@ module Title
     VOLM = Image.load('images/vol-.png')
     VOLM.set_color_key([255,255,255])
     STAFF = Image.load('images/staff.png')
+    STITLE = Sound.new('sounds/su_title.wav')
 
     def initialize
       @su_y1 = 300
       @su_y2 = 600
       @su_muki = true
       @ikari_count = 0
-      @big_su = $image_big_su 
+      @big_su = $image_big_su
+      @waittime = 0
     end
 
     def play
       #BGMを流す
-      if $bgmplaying == 0
-        $bgmplaying = 1
+      if @waittime == 1
+        STITLE.play
+      end
+      if $bgmplaying == 0 && @waittime == 150
+        $bgmplaying = 0
         BGM.play
       end
 
@@ -60,6 +65,7 @@ module Title
 
       if Input.mouse_x >= 470 && Input.mouse_x <= 779 && Input.mouse_y >= 140 && Input.mouse_y <= 214
         if Input.mouse_down?(M_LBUTTON)
+
           Scene.current = :staff
         end
       end
@@ -91,14 +97,17 @@ module Title
       #ｘ座標が250px ~ 473px,ｙ座標が480px ~ 566pxの範囲でマウスがクリックされたとき
       if Input.mouse_x >= 250 && Input.mouse_x <= 473 && Input.mouse_y >= 480 && Input.mouse_y <= 566
         if Input.mouse_push?(M_LBUTTON)
+          @waittime = 0
           Scene.current = :ready
         end
       end
 
       #Enterを押したとき
       if Input.key_push?(K_RETURN)
+        @waittime = 0
         Scene.current = :ready
       end
+      @waittime += 1
     end
   end
 end

@@ -1,7 +1,7 @@
 module Title
   class Director
     BACKGROUND = Image.load('images/mog_title.png')
-    START = Image.load('images/start.png') 
+    START = Image.load('images/start.png')
     BGM = Sound.new('sounds/title.wav')
     VOLP = Image.load('images/vol+.png')
     VOLP.set_color_key([255,255,255])
@@ -20,6 +20,7 @@ module Title
       #BGMを流す
       if $bgmplaying == 0
         $bgmplaying = 1
+
         BGM.play
       end
 
@@ -52,7 +53,7 @@ module Title
       elsif @ikari_count >= 60
         @su_gazo = $image_big_ikari
       end
-      
+
       ### Volume変更する ###
 
       # Volume UP
@@ -75,7 +76,7 @@ module Title
         end
       end
 
-      ### Ready画面に遷移する ### 
+      ### Ready画面に遷移する ###
 
       #ｘ座標が250px ~ 473px,ｙ座標が480px ~ 566pxの範囲でマウスがクリックされたとき
       if Input.mouse_x >= 250 && Input.mouse_x <= 473 && Input.mouse_y >= 480 && Input.mouse_y <= 566

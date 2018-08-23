@@ -145,7 +145,7 @@ module Game
 
     	for mogu in @mogura do
     		mogu.upMogura
-    		mogu.switchCharacter
+    		mogu.selectCharacter
     		mogu.drawMogura
     	end
 
@@ -187,7 +187,6 @@ module Game
         initialize
 
 
-=======
         BGM.stop
         $bgmplaying = 0
         Scene.current = :result

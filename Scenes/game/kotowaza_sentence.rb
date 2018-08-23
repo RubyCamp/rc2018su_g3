@@ -20,17 +20,17 @@ class KotowazaSentence
     @count = 0
     @koto_str = " "
     @font = Font.new(20)
- 
+
   end
 
   def koto_each
 
       #文字を置く幅のまえの幅
-      prev_width = 0 
+      prev_width = 0
       #キャラ配列の初期化
       @chars = []
       kotoroma_str = koto_shuffle
-      
+
 
 
       #width_index は　i を使うのに必要
@@ -38,9 +38,9 @@ class KotowazaSentence
         if i > 0 then
 
           #prev_charには前の文字を格納
-          prev_char = kotoroma_str[i - 1] 
+          prev_char = kotoroma_str[i - 1]
 
-          #calc_width関数からwidthの幅選択 
+          #calc_width関数からwidthの幅選択
           width = calc_width(prev_width, prev_char)
 
           #widthの幅をprev_widthに代入
@@ -53,7 +53,7 @@ class KotowazaSentence
 
           #chars配列に
           @chars << KotowazaChar.new(@x+width , @y ,char)
-        end 
+        end
   end
 
   def draw
@@ -62,38 +62,40 @@ class KotowazaSentence
     end
   end
 
-  
+
 
 #一文字ずつ色を変える
-  
-  def check(str)
-    return true if str.str == " "
-    if @chars[@charnum].char == str.str
-      @chars[@charnum].cange
-      @charnum += 1
 
+  def check(str)
+    return false if str.str == " "
+    if @chars[@charnum].char == str.str
+      @chars[@charnum].change
+      @charnum += 1
+      str.str.chop!
       if @charnum == @chars.length
          @count +=1
         if @count < KOTO_BOX.length
           koto_each
-          @charnum = 0 
+          @charnum = 0
         end
       end
       return true
+    else
+      return false
     end
   end
-  
+
 
   def koto_shuffle
     #シャッフル用配列
-    @koto_box = @koto_box.shuffle   
+    @koto_box = @koto_box.shuffle
 
 
     @koto_str = @koto_box.pop
 
     #ローマ字をkotoroma_str #変更
     kotoroma_str = @koto_str.to_roma
-    
+
     return kotoroma_str
   end
 
@@ -114,8 +116,8 @@ class KotowazaSentence
     else
       prev_width + 18
     end
-  end 
+  end
 
 
-  
+
 end

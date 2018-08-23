@@ -5,9 +5,9 @@ class Mouse
   def initialize
     @button = M_LBUTTON #左クリックする
 
-    @sonzai = false 
+    @sonzai = false
     @sonzai_count = 0
-    
+
     @x = 0 # MouseのX座標
     @y = 0 # MouseのY座標
     @radius = 20 # Mouseの範囲円の半径
@@ -26,7 +26,7 @@ class Mouse
       end
     else
       @sonzai_count += 1
-    end 
+    end
 
     if @sonzai_count >= 10 #再度クリックされずに６分の１秒経過した場合、範囲円を消去する
       @sonzai = false

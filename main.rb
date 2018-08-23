@@ -4,6 +4,9 @@ require_relative 'scenes/title/title'
 require_relative 'scenes/ready/ready'
 require_relative 'scenes/game/gameplay'
 require_relative 'scenes/result/result'
+require_relative "load"
+
+$who_player
 
 Window.width = 800
 Window.height = 600

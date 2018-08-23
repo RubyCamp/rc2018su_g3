@@ -7,14 +7,14 @@ class KotowazaChar
     @y = y
     @char = char
     @color = C_WHITE
-    
+
     @font = Font.new(32)
   end
-  
 
-  def cange
+
+  def change
     @color = C_BLUE
-    
+
   end
 
   def char

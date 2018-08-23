@@ -1,9 +1,10 @@
 class Write
   attr_reader :str,:key_code
+
   def initialize()
-   @str = " "
-   @font = Font.new(32)
-   @key_code=nil
+    @str = " "
+    @font = Font.new(32)
+    @key_code=nil
   end
 
   def update
@@ -100,8 +101,5 @@ class Write
     elsif @str=="-"
       @key_code=K_MINUS
     end
-
-
   end
-
 end

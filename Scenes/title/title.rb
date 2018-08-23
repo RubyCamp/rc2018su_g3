@@ -7,10 +7,10 @@ module Title
     VOLP.set_color_key([255,255,255])
     VOLM = Image.load('images/vol-.png')
     VOLM.set_color_key([255,255,255])
+
     def initialize
       $p1points = 0
       $p2points = 0
-
 
       @su_y1=300
       @su_y2=600
@@ -18,22 +18,18 @@ module Title
       @ikari_count=0
       @su_gazo=$image_big
 
-
-      $i=0
-
-
       $bgmplaying = 0
       $volume = 230
-
     end
+
     def play
-        if $bgmplaying==0
+      if $bgmplaying==0
         $bgmplaying=1
         BGM.play
       end
+
     	Window.draw(0, 0, BACKGROUND)
       Window.draw(250,480,START)
-
 
       if @su_muki
         @su_y1+=2
@@ -58,14 +54,12 @@ module Title
         @su_gazo=$image_big_ikari
       end
 
-
       Window.draw(-80,@su_y1,@su_gazo)
       Window.draw(420,@su_y2,@su_gazo)
 
-
-
       Window.draw(650,520,VOLP)
       Window.draw(700,520,VOLM)
+      
       if Input.mouse_x >= 650 && Input.mouse_x <= 699 && Input.mouse_y >= 520 && Input.mouse_y <= 570
         if Input.mouse_down?(M_LBUTTON)
           $volume +=2

@@ -1,4 +1,7 @@
 class Mogura
+  attr_reader :point
+  attr_reader :x_num,:y_num
+
   def initialize(key_code,x,y)
     @key_code=key_code
     @x_num=x
@@ -61,22 +64,10 @@ class Mogura
 
   end
 
-  def getPoint
-    return @point
-  end
-
   def drawMogura
     if @sonzai
       Window.draw(@x,@y_up-35,@image)
     end
-  end
-
-  def getX
-    return @x_num
-  end
-
-  def getY
-    return @y_num
   end
 
   def selectCharacter
@@ -122,5 +113,4 @@ class Mogura
     @kirikaeshi=true
     @y_up=@y
   end
-
 end

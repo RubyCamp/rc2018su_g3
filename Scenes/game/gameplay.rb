@@ -13,6 +13,8 @@ module Game
 
     def initialize
 
+      @waiting = 0
+
       @str = Write.new()
 
       @sentence = KotowazaSentence.new(230,100)
@@ -109,6 +111,7 @@ module Game
 
   	def play
       Window.draw(0,0,BACKGROUND)
+      Window.draw(650,545,$image_goal)
 
       #BGM鳴らす
       if $bgmplaying == 0
@@ -158,28 +161,32 @@ module Game
       ### うさぎとかめ ### 
 
       @kame_x += 0.01 #かめの進む速度
-      @usa_x += 0.5 #うさぎの進む速度
-
-      Window.draw(@kame_x,500,$image_kame)
-      Window.draw(@usa_x,500,$image_usa)
+      @usa_x += 0.38 #うさぎの進む速度
 
       #うさぎが限界まで進んでゲーム終了 制限時間６０秒
       if @usa_x >= @usa_limit
-        if $who_player == 0
-          $who_player = 1
-          $p1points = @count_point
-          BGM.stop
-          $bgmplaying = 0
-          Scene.current = :ready
-        else
-          $who_player = 0
-          $p2points = @count_point
-          BGM.stop
-          $bgmplaying = 0
-          Scene.current = :result
+        @waiting += 1
+        @usa_x = 630
+
+        if @waiting >= 100
+          if $who_player == 0
+            $who_player = 1
+            $p1points = @count_point
+            BGM.stop
+            $bgmplaying = 0
+            Scene.current = :ready
+          else
+            $who_player = 0
+            $p2points = @count_point
+            BGM.stop
+            $bgmplaying = 0
+            Scene.current = :result
+          end
+          initialize
         end
-        initialize
       end
+      Window.draw(@kame_x,500,$image_kame)
+      Window.draw(@usa_x,500,$image_usa)
     end
   end
 end

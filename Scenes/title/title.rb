@@ -22,6 +22,7 @@ module Title
     def play
       #BGMを流す
       if @waittime == 1
+        sleep(1)
         STITLE.play
       end
       if $bgmplaying == 0 && @waittime == 150

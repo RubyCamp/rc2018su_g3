@@ -25,6 +25,7 @@ Scene.add(:staff, Staff::Director.new)
 
 Scene.current = :title
 
+sleep(1)
 Window.loop do
   break if Input.key_push?(K_ESCAPE) #ESCキーでゲーム終了
   Scene.play

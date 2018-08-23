@@ -42,7 +42,7 @@ def play
         @key_player = 0
         @mouse_player = 0
         BGM.stop
-        $i=0
+        $bgmplaying=0
         Scene.current = :game
       end
     end

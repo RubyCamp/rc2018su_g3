@@ -10,7 +10,7 @@ class Mouse
 
     @x = 0 # MouseのX座標
     @y = 0 # MouseのY座標
-    @radius = 20 # Mouseの範囲円の半径
+    @radius = 30 # Mouseの範囲円の半径
 
     @image = Image.new(100,100,C_BLUE)
     @image.circle_fill(@image.width/2,@image.height/2,@radius,C_GREEN)
@@ -19,6 +19,7 @@ class Mouse
 
   def clickMouse
     if @sonzai == false
+      Window.draw(Input.mousePosX-30,Input.mousePosY-30,$image_hammer)
       if Input.mouseDown?(@button)
         @sonzai = true
         @x = Input.mousePosX #マウスがクリックされたX座標
@@ -34,7 +35,7 @@ class Mouse
     end
 
     if @sonzai == true
-      Window.draw(@x - @image.width/2,@y - @image.height/2, @image) #マウスの範囲円を描画する
+      Window.draw(@x-30,@y-30,$image_hammer_kill)
     end
   end
 end

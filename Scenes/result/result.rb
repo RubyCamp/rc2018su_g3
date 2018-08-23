@@ -5,6 +5,7 @@ module Result
     BACKGROUNDD = Image.load('images/mog_shikiwake.png')
     P1 = Image.load('images/su.png')
     P2 = Image.load('images/mog.png')
+
     FONT = Font.new(60,"MS 明朝")
     MATZU = Sound.new('sounds/matzu_win.wav')
     P2.set_color_key([163,73,164])
@@ -21,6 +22,7 @@ module Result
   	def play
 
       @timewait += 1
+
 
       if $p1points == $p2points
         Window.draw(0,0,BACKGROUNDD)

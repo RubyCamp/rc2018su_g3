@@ -14,21 +14,20 @@ module Title
       @su_y2 = 600
       @su_muki = true
       @ikari_count = 0
-      @su_gazo = $image_big
+      @big_su = $image_big_su 
     end
 
     def play
       #BGMを流す
       if $bgmplaying == 0
         $bgmplaying = 1
-
         BGM.play
       end
 
     	Window.draw(0, 0, BACKGROUND)
       Window.draw(250,480,START)
-      Window.draw(-80,@su_y1,@su_gazo)
-      Window.draw(420,@su_y2,@su_gazo)
+      Window.draw(-80,@su_y1,@big_su)
+      Window.draw(420,@su_y2,@big_su)
       Window.draw(650,520,VOLP)
       Window.draw(700,520,VOLM)
       Window.draw(470,140,STAFF)
@@ -50,11 +49,13 @@ module Title
       @ikari_count += 1
 
       if @ikari_count >= 120
-        @su_gazo = $image_big
+        @big_su = $image_big_su
         @ikari_count = 0
       elsif @ikari_count >= 60
-        @su_gazo = $image_big_ikari
+        @big_su = $image_big_su_ikari
       end
+
+
       ### Staff画面に遷移する ###
 
       if Input.mouse_x >= 470 && Input.mouse_x <= 779 && Input.mouse_y >= 140 && Input.mouse_y <= 214

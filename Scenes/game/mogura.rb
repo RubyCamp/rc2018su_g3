@@ -1,4 +1,5 @@
 class Mogura
+<<<<<<< HEAD
   def initialize(key_code,x,y)
     @key_code=key_code
     @x_num=x
@@ -24,8 +25,35 @@ class Mogura
     @@r=40
     @center_x=@x+@@r
     @center_y=@y_up+@@r
+=======
+  attr_reader :x_num,:y_num,:point
+>>>>>>> 20b556de1d4964e84e34329ed349f62ce519c011
 
-    @point=false
+  def initialize(key_code,x,y)
+    @key_code = key_code
+    @x_num = x
+    @y_num = y
+    @x = 40 + x*80
+    @y = 250 + y*125
+    @y_up = @y
+    @image = $image_matzu
+
+    @characters = {:matzu => [$image_matzu,$image_matzu_ikari],
+                   :su => [$image_su,$image_su_ikari]}
+    @current_character = :matzu 
+    @current_image = @characters[@current_character][0]
+
+    @sonzai = false
+    @damage = false
+    @damage_count = 0
+
+    @kirikaeshi = true
+    @matzu = true
+    @@r = 40
+    @center_x = @x + @@r
+    @center_y = @y_up + @@r
+
+    @point = false
   end
 
   def pushKey(key_code,bool)
@@ -65,19 +93,21 @@ class Mogura
       @damage=false
       self.downMogura
     end
-
   end
 
-  def getPoint
-    return @point
+  def downMogura
+      @sonzai=false
+      @kirikaeshi=true
+      @y_up=@y
   end
 
   def drawMogura
     if @sonzai
-      Window.draw(@x,@y_up-35,@image)
+      Window.draw(@x,@y_up-35,@current_image)
     end
   end
 
+<<<<<<< HEAD
   def getX
     return @x_num
   end
@@ -105,6 +135,8 @@ class Mogura
 
   end
 
+=======
+>>>>>>> 20b556de1d4964e84e34329ed349f62ce519c011
   def hitMogura(x,y,r,sonzai)
     if @sonzai==true && sonzai==true
       a=((@center_x-x)/2)**2
@@ -117,10 +149,17 @@ class Mogura
     end
   end
 
-  def downMogura
-    @sonzai=false
-    @kirikaeshi=true
-    @y_up=@y
-  end
+  def switchCharacter
+    if Input.key_push?(K_RETURN)
+      if @current_character == :matzu 
+        @current_character = :su 
+      else
+        @current_character = :matzu 
+      end
+    end
 
+    if @damage 
+      @current_image = @characters[@current_character][1]
+    end
+  end
 end

@@ -9,20 +9,19 @@ module Game
   class Director
     BACKGROUND = Image.load('load/station.png')
   	FONT = Font.new(40,"MS 明朝")
+
     def initialize
 
       @str = Write.new()
-
 
       @sentence = KotowazaSentence.new(230,100)
       @sentence2 = KotowazaSentence.new(230,100)
       @sentence.koto_each
 
-
       @usa_x=50
       @kame_x=25
 
-      @image=Image.new(80,40,[255,0,0])
+      @image=Image.new(80,40,[255,0,0]) #モグラの穴
 
       @mouse=Mouse.new
 
@@ -58,7 +57,6 @@ module Game
       alphabet_key_array.push(K_Z)
       alphabet_key_array.push(K_MINUS)
 
-
       9.times do
       	count_x_array.push(0)
       end
@@ -90,7 +88,7 @@ module Game
       		end
 
       		for mogu in @mogura do
-      			if mogu.getX==random_x && mogu.getY==random_y
+      			if mogu.x_num==random_x && mogu.y_num==random_y
       				kaburinashi=false
       			end
       		end
@@ -104,10 +102,10 @@ module Game
 
       	@mogura.push(Mogura.new(alphabet_key_array[i],random_x,random_y))
 
-      	@count_point=0
-
+      	@count_point=0 #プレイヤーの得点
       end
     end
+
   	def play
       Window.draw(0,0,BACKGROUND)
       Window.draw_font(500,200,"GAME SCREEN",FONT)
@@ -124,8 +122,6 @@ module Game
       @sentence.draw
       @sentence.draw_kotowaza
 
-
-
       if @usa_x<300
         @usa_x+=2
       elsif @usa_x<350
@@ -140,11 +136,9 @@ module Game
         @usa_x+=5
       end
 
-
-
     	for mogu in @mogura do
     		mogu.upMogura
-    		mogu.selectCharacter
+    		mogu.switchCharacter
     		mogu.drawMogura
     	end
 
@@ -158,7 +152,7 @@ module Game
 
     	for mogu in @mogura do
     		mogu.hitMogura(@mouse.x,@mouse.y,@mouse.radius,@mouse.sonzai)
-    		if mogu.getPoint
+    		if mogu.point 
     			@count_point+=1
     		end
     	end
@@ -186,8 +180,6 @@ module Game
         initialize
 
       end
-
-
 
       if KotowazaSentence::KOTO_BOX.length == @sentence.count
         @sentence.initialize

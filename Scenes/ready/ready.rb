@@ -1,14 +1,17 @@
 module Ready
   class Director
     BACKGROUND = Image.load('images/mog_stage.png')
+
     MOUSE = Image.load('images/mouse.png')
     MOUSE.set_color_key([255,255,255])
-    KEYBOARD = Image.load('images/keyboard.png')
-    KEYBOARD.set_color_key([255,255,255])
     RMOUSE = Image.load('images/mouseready.png')
     RMOUSE.set_color_key([255,255,255])
+
+    KEYBOARD = Image.load('images/keyboard.png')
+    KEYBOARD.set_color_key([255,255,255])
     RKEYBOARD = Image.load('images/keyboardready.png')
     RKEYBOARD.set_color_key([255,255,255])
+    
     BGM = Sound.new('sounds/title.wav')
     FONT = Font.new(30,"MS 明朝")
 

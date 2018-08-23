@@ -9,10 +9,11 @@ module Staff
 
       #ｘ座標が250px ~ 473px,ｙ座標が480px ~ 566pxの範囲でマウスがクリックされたとき
       if Input.mouse_x >= 650 && Input.mouse_x <= 730 && Input.mouse_y >= 400 && Input.mouse_y <= 550
-        if Input.mouse_down?(M_LBUTTON)
+        if Input.mouse_push?(M_LBUTTON)
           Scene.current = :title
         end
       end
+
       #Enterを押したとき
       if Input.key_push?(K_RETURN)
         Scene.current = :title

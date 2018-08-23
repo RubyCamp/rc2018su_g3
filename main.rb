@@ -7,16 +7,12 @@ require_relative 'scenes/result/result'
 require_relative 'scenes/staff/staff'
 require_relative "load"
 
-
-$who_player=0
-
 $who_player = 0
 $p1points = 0
 $p2points = 0
 
 $bgmplaying = 0
 $volume = 230
-
 
 Window.width = 800
 Window.height = 600

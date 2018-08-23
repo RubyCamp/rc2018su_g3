@@ -1,6 +1,6 @@
 class Mouse
-  attr_reader :x, :y, :radius, :sonzai
-  attr_writer :radius
+  attr_reader :x, :y, :sonzai
+  attr_accessor :radius
 
   def initialize
     @button = M_LBUTTON #左クリックする
